@@ -21,6 +21,8 @@ public class AFD {
     private   int i = 0;    
     private   int aux;      
     private   char mat[][];
+    
+    private boolean rec;
       
                     // DADOS INSERIDOS PELO USUARIO
 
@@ -119,7 +121,9 @@ public class AFD {
   
                    System.out.println("Estado final: " +fim);
                    // MOSTRA SE FOI RECONHECIDA A PALAVRA OU NAO 
-                   if(atual == fim ){
+                   
+                   rec = Reconhecer(atual,fim);
+                   if(rec = true){
                     System.out.println("Palavra reconhecida pelo automato!!!");
                   }else{
                        System.out.println("Palavra rejeitada pelo automato!!!");
@@ -127,5 +131,13 @@ public class AFD {
 
 
              }
-    
+             
+             boolean Reconhecer(char atual,char fim){
+                 boolean R;
+                 if(atual == fim){
+                     return true;
+                 }else{
+                     return false;
+                 }
+             }
 }
