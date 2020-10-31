@@ -20,7 +20,7 @@ public class AFD {
     private   int j=0;
     private   int i = 0;    
     private   int aux;      
-    private   char mat[][];
+    //private   char mat[][];//o processo para ler a palavra
     
     private boolean rec;
       
@@ -50,18 +50,20 @@ public class AFD {
         palavra = in.nextLine();
         pal = palavra.toCharArray();
         
-        organiza(transicao);
-        Reconhecer();
+        char processo[][];
+        
+        processo = organiza(transicao);
+        Reconhecer(pal,processo);
     }
     
     
-    public void organiza(String transicao[]){
+    public char[][] organiza(String transicao[]){
          // ATRIBUI AS FUNÇÕES DE TRANSIÇÕES EM UMA MATRIZ 
                while(j<transicao.length){ // CONTADOR PARA SABER QUANTAS TRANSIÇÕES O USUARIO INSERIU 
                j++;
                }
 
-                mat = new char [j][3];
+                char mat[][] = new char [j][3];
                // PERCORRE CARA TRANSIÇÃO PARA INSERIR NA MATRIZ
                while(cont< transicao.length){
                   
@@ -72,21 +74,22 @@ public class AFD {
                  System.out.println("Valores na matriz: " +mat[cont][0] +mat[cont][1] +mat[cont][2]);
                 
                     cont++;
-                   }
+               }
                 
-               cont=0;  
+               cont=0;
+               return mat;
     }
     
-    boolean Reconhecer(){
+    boolean Reconhecer(char palavra[], char mat[][]){
         cont = 0;
         // VERIFICA O TAMANHO DA PALAVRA PARA SER TESTADA
-               while(cont < pal.length){
+               while(cont < palavra.length){
                
                    aux=0;
                    // LOGICA APLICADA PARA FAZER A TRANSIÇÃO DE UM ESTADO PARA O OUTRO
                    while( aux != j) {
                        
-                       if(mat[aux][1]== pal[cont]){
+                       if(mat[aux][1]== palavra[cont]){
                         if(mat[aux][0]== atual){
                             atual = mat[aux][2];
                             aux = j-1;
@@ -106,9 +109,10 @@ public class AFD {
                }
 
                
-
+                   System.out.println("----------TESTE INICIO FINALIZADO----------");
                    System.out.println("Automato finalizado!!!");
                    System.out.println("Estado final: " +atual);
+                   System.out.println("--------------------");
                    cont=0;
                    
                    
