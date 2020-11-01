@@ -24,8 +24,8 @@ public class AFD {
     
     private boolean rec;
       
-                    // DADOS INSERIDOS PELO USUARIO
-    public void iniciaAFD(){
+    // DADOS INSERIDOS PELO USUARIO
+    public void iniciaAFD(){ // Função para a configuração do Autômato Finito Determinístico
         System.out.println("Digite o alfabeto?");
         this.alfabeto = in.nextLine();
         this.alf = this.alfabeto.toCharArray();
@@ -50,14 +50,14 @@ public class AFD {
         palavra = in.nextLine();
         pal = palavra.toCharArray();
         
-        char processo[][];
+        char processo[][];// Matriz gerada para passar como paramentro na função Reconhecer.
         
-        processo = organiza(transicao);
+        processo = organiza(transicao);//Retorna a matriz gerada na função organiza.
         Reconhecer(pal,processo);
     }
     
     
-    public char[][] organiza(String transicao[]){
+    public char[][] organiza(String transicao[]){ //Função para organizar as transições na matriz e retorna a mesma.
          // ATRIBUI AS FUNÇÕES DE TRANSIÇÕES EM UMA MATRIZ 
                while(j<transicao.length){ // CONTADOR PARA SABER QUANTAS TRANSIÇÕES O USUARIO INSERIU 
                j++;
@@ -80,7 +80,7 @@ public class AFD {
                return mat;
     }
     
-    boolean Reconhecer(char palavra[], char mat[][]){
+    boolean Reconhecer(char palavra[], char mat[][]){//Função onde será realizado as transições, e retorna true: reconhecida e false: não reconhecida
         cont = 0;
         int n = 0;
         int x = 0;
@@ -99,10 +99,10 @@ public class AFD {
                         if(mat[aux][0]== atual){
                             char ant = atual;
                             atual = mat[aux][2];
-                            System.out.print("("+ant+" ,");
+                            System.out.print("("+ant+" ,");//Print para mostrar o estado onde estava
                             
                             for(n = x; n < tam; n++){
-                                System.out.print(""+palPrint[n]);
+                                System.out.print(""+palPrint[n]);//Print para mostrar a palavra consumida
                             }
                             System.out.println(")");
                             
@@ -147,9 +147,8 @@ public class AFD {
                    }
   
                    System.out.println("Estado final: " +fim);
-                   // MOSTRA SE FOI RECONHECIDA A PALAVRA OU NAO 
                    
-                   //rec = Reconhecer(atual,fim);
+                   // MOSTRA SE FOI RECONHECIDA A PALAVRA OU NAO 
                    if(atual == fim){
                     System.out.println("Palavra reconhecida pelo automato!!!");
                     return true;
