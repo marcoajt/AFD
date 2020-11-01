@@ -82,7 +82,13 @@ public class AFD {
     
     boolean Reconhecer(char palavra[], char mat[][]){
         cont = 0;
+        int n = 0;
+        int x = 0;
+        char palPrint[] = palavra;
+        int tam = palavra.length;
+        
         // VERIFICA O TAMANHO DA PALAVRA PARA SER TESTADA
+        System.out.println("----------TRANSIÇÔES----------");
                while(cont < palavra.length){
                
                    aux=0;
@@ -92,6 +98,15 @@ public class AFD {
                        if(mat[aux][1]== palavra[cont]){
                         if(mat[aux][0]== atual){
                             atual = mat[aux][2];
+                            System.out.print("("+atual+" ,");
+                            
+                            for(n = x; n < tam; n++){
+                                System.out.print(""+palPrint[n]);
+                            }
+                            System.out.println(")");
+                            
+                            x++;
+                            
                             aux = j-1;
                         }
                        }
@@ -100,7 +115,7 @@ public class AFD {
                        
                    }
                 
-                   System.out.println("Estado atual: " +atual);
+                   //System.out.println("Estado atual: " +atual);
                    
                
                cont++;
