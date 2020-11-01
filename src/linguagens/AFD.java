@@ -97,8 +97,9 @@ public class AFD {
                        
                        if(mat[aux][1]== palavra[cont]){
                         if(mat[aux][0]== atual){
+                            char ant = atual;
                             atual = mat[aux][2];
-                            System.out.print("("+atual+" ,");
+                            System.out.print("("+ant+" ,");
                             
                             for(n = x; n < tam; n++){
                                 System.out.print(""+palPrint[n]);
@@ -113,6 +114,9 @@ public class AFD {
                        
                        aux++;
                        
+                   }
+                   if(x == tam){
+                       System.out.println("("+atual+",&)");
                    }
                 
                    //System.out.println("Estado atual: " +atual);
